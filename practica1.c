@@ -357,34 +357,22 @@ int main(){
 					//
 					float *float_red, *float_blue, *float_green,*float_red1,*float_red2,
 					      *float_blue1,*float_blue2,*float_green1,*float_green2;
-					float_red1 = (float *)malloc(sizeof((float)(*red1))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((float)(*red1))); i++)
+					float_red1 = malloc(sizeof(float)*width1*heigth1 ); //ojito, hay q liberar dp
+					float_red2 = malloc(sizeof(float)*width2*heigth2 ); //ojito, hay q liberar dp 
+					float_blue1 = malloc(sizeof(float)*width1*heigth1 ); //ojito, hay q liberar dp 
+					float_blue2 = malloc(sizeof(float)*width2*heigth2 ); //ojito, hay q liberar dp 
+					float_green1 = malloc(sizeof(float)*width1*heigth1 ); //ojito, hay q liberar dp 
+					for (i=0;i<width1*heigth1; i++)
 					{
 						float_red1[i]=red1[i];
-					}
-					float_red2 = (float *)malloc(sizeof((float)(*red2))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((float)(*red2))); i++)
-					{
-						float_red2[i]=red2[i];
-					}
-					float_blue1 = (float *)malloc(sizeof((float)(*blue1))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((float)(*blue1))); i++)
-					{
 						float_blue1[i]=blue1[i];
-					}
-					float_blue2 = (float *)malloc(sizeof((float)(*blue2))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((float)(*blue2))); i++)
-					{
-						float_blue2[i]=blue2[i];
-					}
-					float_green1 = (float *)malloc(sizeof((float)(*green1))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((float)(*green1))); i++)
-					{
 						float_green1[i]=green1[i];
 					}
-					float_green2 = (float *)malloc(sizeof((float)(*green2))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((float)(*green2))); i++)
+					float_green2 = malloc(sizeof(float)*width2*heigth2 ); //ojito, hay q liberar dp 
+					for (i=0;i<width2*heigth2; i++)
 					{
+						float_red2[i]=red2[i];
+						float_blue2[i]=blue2[i];
 						float_green2[i]=green2[i];
 					}
 
@@ -392,23 +380,13 @@ int main(){
 					aan_unir_canales_float(float_green1,float_green2,&float_green,width1,heigth1);
 					aan_unir_canales_float(float_blue1,float_blue2,&float_blue,width1,heigth1);
 
-					red = (unsigned char *)malloc(sizeof((unsigned char)(*float_red))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((unsigned char)(*float_red))); i++)
+					for (i=0;i<(width1*heigth1); i++)
 					{
-						red[i]=float_red[i];
+						red[i]=(unsigned char)float_red[i];
+						blue[i]=(unsigned char)float_blue[i];
+						green[i]=(unsigned char)float_green[i];
 					}
 					
-					blue = (unsigned char *)malloc(sizeof((unsigned char)(*float_blue))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((unsigned char)(*float_blue))); i++)
-					{
-						blue[i]=float_blue[i];
-					}			 
-					
-					green = (unsigned char *)malloc(sizeof((unsigned char)(*float_green))); //ojito, hay q liberar dp 
-					for (i=0;i<(sizeof((unsigned char)(*float_green))); i++)
-					{
-						green[i]=float_green[i];
-					}
 					// guardamos la nueva imagen
 					ami_write_bmp(ficherosalida,red,green,blue,((width1*2)+4),heigth1);
 					free(float_red); 
