@@ -379,8 +379,7 @@ int main(){
 					aan_unir_canales_float(float_red1,float_red2,&float_red,width1,heigth1);
 					aan_unir_canales_float(float_green1,float_green2,&float_green,width1,heigth1);
 					aan_unir_canales_float(float_blue1,float_blue2,&float_blue,width1,heigth1);
-
-					for (i=0;i<(width1*heigth1); i++)
+					for (i=0;i<(width1*2 + 4) * heigth1; i++)
 					{
 						red[i]=(unsigned char)float_red[i];
 						blue[i]=(unsigned char)float_blue[i];
